@@ -4,7 +4,6 @@ import axios from "axios";
 //Components
 import MovieList from "./pages/MovieList";
 import Nav from "./components/Nav";
-import AddNominate from "./components/AddNominate";
 
 //Styling and animation
 import styled from "styled-components";
@@ -24,19 +23,46 @@ function App() {
     const response = await axios.get(baseUrl, {
       params: {
         s: `${searchValue}`,
+        type: "movie",
         apikey: process.env.REACT_APP_OMDB_API,
       },
     });
-    response.data.Search && setMovies(response.data.Search);
+    if (response.data.Search) {
+      setMovies(response.data.Search);
+    }
   };
 
   useEffect(() => {
     getMovieSearch();
   }, [searchValue]);
 
-  const addNominatedMovie = (movie) => {
+  useEffect(() => {
+    const savedNominationList = JSON.parse(
+      localStorage.getItem("nominationList")
+    );
+    savedNominationList && setNominationList(savedNominationList);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("nominationList", JSON.stringify(items));
+  };
+
+  const addMovie = (movie) => {
     const newNominationList = [...nominationList, movie];
     setNominationList(newNominationList);
+    saveToLocalStorage(newNominationList);
+  };
+
+  const removeMovie = (movie) => {
+    const newNominationList = nominationList.filter(
+      (nominate) => nominate.imdbID !== movie.imdbID
+    );
+    setNominationList(newNominationList);
+    saveToLocalStorage(newNominationList);
+  };
+
+  const handleNominatesClick = (action, movie) => {
+    action === "add" ? addMovie(movie) : removeMovie(movie);
   };
 
   return (
@@ -45,8 +71,8 @@ function App() {
       <Route path={"/"}>
         <MovieList
           movies={movies}
-          handleNominatesClick={addNominatedMovie}
-          AddNominate={AddNominate}
+          handleNominatesClick={handleNominatesClick}
+          nominationList={nominationList}
         />
       </Route>
     </StyledApp>

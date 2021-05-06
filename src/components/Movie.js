@@ -3,21 +3,39 @@ import React from "react";
 //Styling and animation
 import styled from "styled-components";
 
+//components
+import AddNominate from "./AddNominate";
+import RemoveNominate from "./RemoveNominate";
+
 function Movie({
   title,
   poster,
   year,
-  AddNominate,
   movie,
+  nominationList,
   handleNominatesClick,
 }) {
+  //Checking is a movie is nominated or not
+  const isNominated = (movie) => {
+    let isNominated = false;
+    nominationList &&
+      nominationList.forEach((nominate) => {
+        if (nominate.imdbID === movie.imdbID) isNominated = true;
+      });
+    return isNominated;
+  };
   return (
-    <StyledMovie onClick={() => handleNominatesClick(movie)}>
+    <StyledMovie
+      onClick={() =>
+        handleNominatesClick(!isNominated(movie) ? "add" : "remove", movie)
+      }
+    >
       <h3>{title}</h3>
       <p>{year}</p>
       <img src={poster} alt={title} />
       <Overlay>
-        <AddNominate />
+        {isNominated(movie) && <RemoveNominate />}
+        {!isNominated(movie) && nominationList.length < 5 && <AddNominate />}
       </Overlay>
     </StyledMovie>
   );

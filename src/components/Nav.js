@@ -23,7 +23,12 @@ function Nav({ searchValue, setSearchValue }) {
         {/* <img src=".././img/logo.svg" alt="logo" /> */}
         <h1>Ignite</h1>
       </Logo>
-      <input type="text" onChange={inputHandler} value={searchValue} />
+      <input
+        autoFocus
+        type="text"
+        onChange={inputHandler}
+        value={searchValue}
+      />
     </Stylednav>
   );
 }

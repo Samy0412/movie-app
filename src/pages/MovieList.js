@@ -6,7 +6,7 @@ import Movie from "../components/Movie";
 //Styling and animation
 import styled from "styled-components";
 
-function MovieList({ movies, AddNominate, handleNominatesClick }) {
+function MovieList({ movies, nominationList, handleNominatesClick }) {
   return (
     <>
       <Movies>
@@ -16,8 +16,8 @@ function MovieList({ movies, AddNominate, handleNominatesClick }) {
             title={movie.Title}
             year={movie.Year}
             poster={movie.Poster}
-            AddNominate={AddNominate}
             movie={movie}
+            nominationList={nominationList}
             handleNominatesClick={handleNominatesClick}
           />
         ))}

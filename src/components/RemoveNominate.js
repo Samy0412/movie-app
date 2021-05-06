@@ -2,15 +2,14 @@ import React from "react";
 //Styling and animation
 import styled from "styled-components";
 
-function AddNominate() {
+function RemoveNominate() {
   return (
     <>
-      <Text>Nominate</Text>
+      <Text>Remove from nominates</Text>
     </>
   );
 }
-
 const Text = styled.p`
   color: white;
 `;
-export default AddNominate;
+export default RemoveNominate;

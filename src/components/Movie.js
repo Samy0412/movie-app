@@ -15,7 +15,7 @@ function Movie({
   nominationList,
   handleNominatesClick,
 }) {
-  //Checking is a movie is nominated or not
+  //Checking if a movie is already nominated
   const isNominated = (movie) => {
     let isNominated = false;
     nominationList &&
@@ -24,15 +24,24 @@ function Movie({
       });
     return isNominated;
   };
+
   return (
     <StyledMovie
       onClick={() =>
         handleNominatesClick(!isNominated(movie) ? "add" : "remove", movie)
       }
     >
-      <h3>{title}</h3>
-      <p>{year}</p>
-      <img src={poster} alt={title} />
+      <div className="poster">
+        <img
+          src={poster === "N/A" ? "img/no-image-available.png" : poster}
+          alt={title}
+        />
+      </div>
+      <div className="info">
+        <h3>{title}</h3>
+        <p>{year}</p>
+      </div>
+
       <Overlay>
         {isNominated(movie) && <RemoveNominate />}
         {!isNominated(movie) && nominationList.length < 5 && <AddNominate />}
@@ -45,18 +54,37 @@ const StyledMovie = styled.div`
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  border-radius: 1rem;
   cursor: pointer;
-  overflow: hidden;
   background-color: white;
   position: relative;
+
+  .poster {
+    overflow: hidden;
+  }
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    max-height: 4rem;
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
   img {
     width: 100%;
-    height: 40vh;
+    height: 45vh;
     object-fit: cover;
   }
   &:hover {
-    transform: scale(1.02);
+    img {
+      transform: scale(1.1);
+      transition: ease-in-out 0.4s;
+    }
     transition: ease-in-out 0.2s;
   }
 `;

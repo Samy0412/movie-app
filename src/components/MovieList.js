@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import Movie from "../components/Movie";
+import Movie from "./Movie";
 
 //Styling and animation
 import styled from "styled-components";
@@ -22,19 +22,15 @@ function MovieList({ movies, nominationList, handleNominatesClick }) {
           />
         ))}
       </Movies>
-      {movies && movies.length === 0 && (
-        <h3>Sorry, we didn't find any match!</h3>
-      )}
     </>
   );
 }
 
 const Movies = styled.div`
-  min-height: 80vh;
   display: grid;
   padding: 2rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: 400px 400px 400px;
+  /* grid-template-rows: 450px 450px 450px; */
   grid-column-gap: 2.5rem;
   grid-row-gap: 2.5rem;
 `;

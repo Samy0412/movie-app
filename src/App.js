@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import axios from "axios";
+
+//Helper functions
+import { getMovieSearch } from "./helpers/api";
+import {
+  saveToLocalStorage,
+  addToList,
+  removeFromList,
+} from "./helpers/functions";
+
 //Components
-import MovieList from "./pages/MovieList";
+import MovieList from "./components/MovieList";
 import Nav from "./components/Nav";
+import Banner from "./components/Banner";
 
 //Styling and animation
 import styled from "styled-components";
@@ -16,26 +25,7 @@ function App() {
   //Nominated movies
   const [nominationList, setNominationList] = useState([]);
 
-  //API request to get the movies
-  const getMovieSearch = async () => {
-    const baseUrl = `http://www.omdbapi.com/`;
-
-    const response = await axios.get(baseUrl, {
-      params: {
-        s: `${searchValue}`,
-        type: "movie",
-        apikey: process.env.REACT_APP_OMDB_API,
-      },
-    });
-    if (response.data.Search) {
-      setMovies(response.data.Search);
-    }
-  };
-
-  useEffect(() => {
-    getMovieSearch();
-  }, [searchValue]);
-
+  //Retrieves the nomination list saved by the user if it exists
   useEffect(() => {
     const savedNominationList = JSON.parse(
       localStorage.getItem("nominationList")
@@ -43,43 +33,54 @@ function App() {
     savedNominationList && setNominationList(savedNominationList);
   }, []);
 
-  const saveToLocalStorage = (items) => {
-    localStorage.setItem("nominationList", JSON.stringify(items));
-  };
+  //Gets the movies for the search
+  useEffect(() => {
+    getMovieSearch(searchValue).then((response) => {
+      if (response.data.Search) {
+        setMovies(response.data.Search);
+      }
+    });
+  }, [searchValue]);
 
-  const addMovie = (movie) => {
-    const newNominationList = [...nominationList, movie];
-    setNominationList(newNominationList);
-    saveToLocalStorage(newNominationList);
-  };
-
-  const removeMovie = (movie) => {
-    const newNominationList = nominationList.filter(
-      (nominate) => nominate.imdbID !== movie.imdbID
-    );
-    setNominationList(newNominationList);
-    saveToLocalStorage(newNominationList);
-  };
-
+  //Adds or removes a movie from the nomination list
   const handleNominatesClick = (action, movie) => {
-    action === "add" ? addMovie(movie) : removeMovie(movie);
+    let newNominationList = [];
+    if (action === "add") {
+      newNominationList = addToList(movie, nominationList);
+    } else {
+      newNominationList = removeFromList(movie, nominationList);
+    }
+    setNominationList(newNominationList);
+    saveToLocalStorage(newNominationList);
   };
 
   return (
-    <StyledApp>
-      <Nav searchValue={searchValue} setSearchValue={setSearchValue} />
-      <Route path={"/"}>
-        <MovieList
-          movies={movies}
-          handleNominatesClick={handleNominatesClick}
+    <>
+      <StyledApp>
+        <Nav
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
           nominationList={nominationList}
+          handleNominatesClick={handleNominatesClick}
         />
-      </Route>
-    </StyledApp>
+        <Route path={"/"}>
+          <MovieList
+            movies={movies}
+            handleNominatesClick={handleNominatesClick}
+            nominationList={nominationList}
+          />
+        </Route>
+      </StyledApp>
+      <Banner nominationList={nominationList} />
+    </>
   );
 }
 const StyledApp = styled.div`
   background-color: black;
+  padding: 0rem 15rem;
+  @media screen and (max-width: 1220px) {
+    padding: 0rem;
+  }
 `;
 
 export default App;

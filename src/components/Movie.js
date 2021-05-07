@@ -35,7 +35,11 @@ function Movie({
         <img
           src={poster === "N/A" ? "img/no-image-available.png" : poster}
           alt={title}
+          class="poster__image"
         />
+        {isNominated(movie) && (
+          <img src="img/award-svg.svg" alt="award" class="award" />
+        )}
       </div>
       <div className="info">
         <h3>{title}</h3>
@@ -60,6 +64,7 @@ const StyledMovie = styled.div`
 
   .poster {
     overflow: hidden;
+    position: relative;
   }
   .info {
     display: flex;
@@ -75,13 +80,19 @@ const StyledMovie = styled.div`
       font-size: 14px;
     }
   }
-  img {
+  .poster__image {
     width: 100%;
     height: 45vh;
     object-fit: cover;
   }
+  .award {
+    width: 65px;
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+  }
   &:hover {
-    img {
+    .poster__image {
       transform: scale(1.1);
       transition: ease-in-out 0.4s;
     }

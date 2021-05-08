@@ -3,7 +3,7 @@ import React from "react";
 //Styling and animation
 import styled from "styled-components";
 
-//Icon component
+//Icon components
 import { IoTrashBinSharp } from "react-icons/io5";
 import { IoAddOutline } from "react-icons/io5";
 

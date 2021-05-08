@@ -18,6 +18,7 @@ import {
 import MovieList from "./MovieList";
 
 function NominationList({ nominationList, handleNominatesClick }) {
+  //Set up for Chakra UI drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
@@ -54,7 +55,6 @@ function NominationList({ nominationList, handleNominatesClick }) {
               <p> My nomination list</p>
             </Title>
           </DrawerHeader>
-
           <DrawerBody>
             <MovieList
               movies={nominationList}
@@ -67,6 +67,8 @@ function NominationList({ nominationList, handleNominatesClick }) {
     </>
   );
 }
+
+//Styled components
 const ButtonStyled = styled.div`
   display: flex;
   width: 5.5rem;

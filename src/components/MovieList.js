@@ -26,11 +26,11 @@ function MovieList({ movies, nominationList, handleNominatesClick }) {
   );
 }
 
+//Styled components
 const Movies = styled.div`
   display: grid;
   padding: 2rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  /* grid-template-rows: 450px 450px 450px; */
   grid-column-gap: 2.5rem;
   grid-row-gap: 2.5rem;
 `;

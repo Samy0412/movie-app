@@ -70,17 +70,40 @@ function App() {
             handleNominatesClick={handleNominatesClick}
             nominationList={nominationList}
           />
+          <Footer>
+            2021 - Build by{" "}
+            <a href="https://github.com/Samy0412" target="__blank">
+              Samantha Gadet
+            </a>{" "}
+            for the front end shopify challenge.
+          </Footer>
         </Route>
       </StyledApp>
       <Banner nominationList={nominationList} />
     </>
   );
 }
+
+//Styled components
 const StyledApp = styled.div`
   background-color: black;
   padding: 0rem 15rem;
   @media screen and (max-width: 1220px) {
     padding: 0rem;
+  }
+`;
+const Footer = styled.div`
+  color: white;
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  a {
+    color: rgb(192, 164, 96);
+    font-weight: 500;
   }
 `;
 

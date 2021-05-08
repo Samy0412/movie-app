@@ -69,6 +69,8 @@ function Banner({ nominationList }) {
     </Modal>
   );
 }
+
+//Styled components
 const HeaderStyled = styled.div`
   display: flex;
   width: 50%;

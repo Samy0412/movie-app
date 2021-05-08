@@ -1,13 +1,11 @@
 import React from "react";
-import { useEffect } from "react/cjs/react.development";
 
 //Styling and animation
 import styled from "styled-components";
-import gsap from "gsap";
 
-//components
-import AddNominate from "./AddNominate";
-import RemoveNominate from "./RemoveNominate";
+//Icon component
+import { IoTrashBinSharp } from "react-icons/io5";
+import { IoAddOutline } from "react-icons/io5";
 
 function Movie({
   title,
@@ -49,13 +47,22 @@ function Movie({
       </div>
 
       <Overlay>
-        {isNominated(movie) && <RemoveNominate />}
-        {!isNominated(movie) && nominationList.length < 5 && <AddNominate />}
+        {isNominated(movie) && (
+          <RemoveNominate className="animate">
+            <IoTrashBinSharp />
+          </RemoveNominate>
+        )}
+        {!isNominated(movie) && nominationList.length < 5 && (
+          <AddNominate className="animate">
+            <IoAddOutline />
+          </AddNominate>
+        )}
       </Overlay>
     </StyledMovie>
   );
 }
 
+//Styled components
 const StyledMovie = styled.div`
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
@@ -63,7 +70,7 @@ const StyledMovie = styled.div`
   cursor: pointer;
   background-color: white;
   position: relative;
-
+  animation: zoomIn 2s ease;
   .poster {
     overflow: hidden;
     position: relative;
@@ -100,6 +107,55 @@ const StyledMovie = styled.div`
       transform: scale(1.1);
       transition: ease-in-out 0.4s;
     }
+    .animate {
+      animation: bounce ease 1s;
+    }
+    @keyframes bounce {
+      0% {
+        transform: scale(1.2);
+      }
+      50% {
+        transform: scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+  @keyframes zoomIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+const RemoveNominate = styled.p`
+  background-color: rgb(0, 0, 0);
+  padding: 1rem;
+  border-radius: 50%;
+  color: rgba(192, 164, 96, 1);
+  font-size: 2rem;
+  font-weight: 700;
+  transition: ease-in 0.2s;
+  opacity: 0.6;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
+const AddNominate = styled.p`
+  background-color: rgb(0, 0, 0);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: rgba(192, 164, 96, 1);
+  font-size: 3rem;
+  font-weight: 700;
+  transition: ease-in 0.2s;
+  opacity: 0.6;
+  :hover {
+    opacity: 0.8;
   }
 `;
 
@@ -112,7 +168,7 @@ const Overlay = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(192, 164, 96, 0.4);
   width: 100%;
   height: 100%;
   &:hover {

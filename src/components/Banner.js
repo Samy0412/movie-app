@@ -11,7 +11,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  // ModalCloseButton,
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
@@ -46,7 +45,6 @@ function Banner({ nominationList }) {
             <img src=".././img/wreath-gold.png" alt="logo" />
           </HeaderStyled>
         </ModalHeader>
-        {/* <ModalCloseButton _focus={{ outline: "none" }} /> */}
         <ModalBody>
           <BodyStyled>
             Congrats! you have nominated 5 movies!

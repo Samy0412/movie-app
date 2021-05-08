@@ -96,10 +96,13 @@ const StyledMovie = styled.div`
   }
 
   .award {
-    width: 65px;
+    width: 60px;
     position: absolute;
     bottom: 5px;
     left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0.6rem;
+    border-radius: 50%;
   }
 
   &:hover {

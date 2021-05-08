@@ -62,6 +62,7 @@ function App() {
           setSearchValue={setSearchValue}
           nominationList={nominationList}
           handleNominatesClick={handleNominatesClick}
+          movies={movies}
         />
         <Route path={"/"}>
           <MovieList

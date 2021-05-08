@@ -5,21 +5,23 @@ import styled from "styled-components";
 function AddNominate() {
   return (
     <>
-      <Text>+ Add to List</Text>
+      <Text>+ Add to list</Text>
     </>
   );
 }
 
 const Text = styled.p`
-  border: 1px solid white;
-  border-radius: 1.5rem;
-  padding: 0.3rem 1rem;
-  color: white;
-  font-size: 1rem;
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 3rem;
+  padding-top: 0.3rem;
+  color: rgba(192, 164, 96, 1);
+  font-size: 1.5rem;
   font-weight: 500;
   transition: ease-in 0.2s;
+  opacity: 0.6;
   :hover {
-    opacity: 0.6;
+    opacity: 0.8;
     transition: ease-in 0.2s;
   }
 `;

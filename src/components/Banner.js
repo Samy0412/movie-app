@@ -11,7 +11,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
+  // ModalCloseButton,
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
@@ -25,7 +25,7 @@ function Banner({ nominationList }) {
     if (nominationList.length === 5) {
       onOpen();
     }
-  }, [nominationList]);
+  }, [nominationList, onOpen]);
 
   return (
     <Modal
@@ -48,10 +48,12 @@ function Banner({ nominationList }) {
         </ModalHeader>
         {/* <ModalCloseButton _focus={{ outline: "none" }} /> */}
         <ModalBody>
-          Congrats! you have completed your selection!
-          <br />
-          If you wish to change your selection please remove movies from your
-          list.
+          <BodyStyled>
+            Congrats! you have nominated 5 movies!
+            <br />
+            If you wish to change your selection please remove movies from your
+            list.
+          </BodyStyled>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -76,5 +78,11 @@ const HeaderStyled = styled.div`
   img {
     width: 1.7rem;
   }
+`;
+
+const BodyStyled = styled.div`
+  padding: 0rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
 export default Banner;

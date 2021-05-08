@@ -1,7 +1,9 @@
 import React from "react";
+import { useEffect } from "react/cjs/react.development";
 
 //Styling and animation
 import styled from "styled-components";
+import gsap from "gsap";
 
 //components
 import AddNominate from "./AddNominate";
@@ -35,10 +37,10 @@ function Movie({
         <img
           src={poster === "N/A" ? "img/no-image-available.png" : poster}
           alt={title}
-          class="poster__image"
+          className="poster__image"
         />
         {isNominated(movie) && (
-          <img src="img/award-svg.svg" alt="award" class="award" />
+          <img src="img/award-svg.svg" alt="award" className="award" />
         )}
       </div>
       <div className="info">
@@ -85,18 +87,19 @@ const StyledMovie = styled.div`
     height: 45vh;
     object-fit: cover;
   }
+
   .award {
     width: 65px;
     position: absolute;
     bottom: 5px;
     left: 10px;
   }
+
   &:hover {
     .poster__image {
       transform: scale(1.1);
       transition: ease-in-out 0.4s;
     }
-    transition: ease-in-out 0.2s;
   }
 `;
 
@@ -109,11 +112,12 @@ const Overlay = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100%;
   &:hover {
     opacity: 1;
   }
 `;
+
 export default Movie;

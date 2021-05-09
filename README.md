@@ -10,7 +10,7 @@ You can also view it and use it directly here: https://movie-app-iota-three.verc
 
 1. Fork this repository, then clone your fork of this repository.
 2. Install dependencies using the `npm install` command.
-3. Create a `.env` file and add you api key this way: ` REACT_APP_OMDB_API="[yourkeyhere]"`.
+3. Create a `.env` file and add your api key this way: ` REACT_APP_OMDB_API="[yourkeyhere]"`.
 4. Start the web server using the `npm start` command.
 5. Go to http://localhost:3000/ in your browser.
 

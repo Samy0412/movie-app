@@ -18,4 +18,6 @@ You can also view it and use it directly here: https://movie-app-o5i3dezwj-samy0
 
 UI of the app:
 
-!["Main UI"]()
+!["Main UI"](https://github.com/Samy0412/movie-app/blob/master/public/img/main-Ui.png?raw=true)
+
+!["Mobile Version"](https://github.com/Samy0412/movie-app/blob/master/public/img/Mobile.png?raw=true)

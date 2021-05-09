@@ -4,7 +4,7 @@ The shoppies is a movie app that was built for the Shopify intern front-end chal
 Movie are coming from the OMDB api (https://www.omdbapi.com/).
 
 To install the app, you need to get a free api key (https://www.omdbapi.com/apikey.aspx).
-You can also view it and use it directly here: https://movie-app-o5i3dezwj-samy0412.vercel.app/
+You can also view it and use it directly here: https://movie-app-iota-three.vercel.app/
 
 ## Setup
 

@@ -20,4 +20,6 @@ UI of the app:
 
 !["Main UI"](https://github.com/Samy0412/movie-app/blob/master/public/img/main-Ui.png?raw=true)
 
+Mobile version of the app:
+
 !["Mobile Version"](https://github.com/Samy0412/movie-app/blob/master/public/img/Mobile.png?raw=true)

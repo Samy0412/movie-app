@@ -1,7 +1,7 @@
 # The Shoppies - Movie awards for entrepreneurs
 
 The shoppies is a movie app that was built for the Shopify intern front-end challenge. It is built with React, animations made with CSS and Gsap library. It also uses Styled components for styling.
-Movie are coming from the OMDB api (https://www.omdbapi.com/).
+Movies are coming from the OMDB api (https://www.omdbapi.com/).
 
 To install the app, you need to get a free api key (https://www.omdbapi.com/apikey.aspx).
 You can also view it and use it directly here: https://movie-app-iota-three.vercel.app/

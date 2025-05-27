@@ -7,6 +7,9 @@ import styled from "styled-components";
 import { IoTrashBinSharp } from "react-icons/io5";
 import { IoAddOutline } from "react-icons/io5";
 
+//Types
+import { MovieData, MovieProps } from "../types";
+
 function Movie({
   title,
   poster,
@@ -14,9 +17,9 @@ function Movie({
   movie,
   nominationList,
   handleNominatesClick,
-}) {
+}: MovieProps) {
   //Checking if a movie is already nominated
-  const isNominated = (movie) => {
+  const isNominated = (movie: MovieData): boolean => {
     let isNominated = false;
     nominationList &&
       nominationList.forEach((nominate) => {
@@ -180,3 +183,5 @@ const Overlay = styled.div`
 `;
 
 export default Movie;
+// Re-export types for backward compatibility
+export type { MovieData, MovieProps };

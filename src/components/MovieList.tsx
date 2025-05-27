@@ -6,7 +6,10 @@ import Movie from "./Movie";
 //Styling and animation
 import styled from "styled-components";
 
-function MovieList({ movies, nominationList, handleNominatesClick }) {
+//Types
+import { MovieListProps } from "../types";
+
+function MovieList({ movies, nominationList, handleNominatesClick }: MovieListProps) {
   return (
     <>
       <Movies>

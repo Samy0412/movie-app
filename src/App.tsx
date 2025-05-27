@@ -14,23 +14,31 @@ import MovieList from "./components/MovieList";
 import Nav from "./components/Nav";
 import Banner from "./components/Banner";
 
+//Types
+import { MovieData } from "./types";
+
 //Styling and animation
 import styled from "styled-components";
 
-function App() {
+function App(): React.JSX.Element {
   //Movies from result search
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieData[]>([]);
   //Search value
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
   //Nominated movies
-  const [nominationList, setNominationList] = useState([]);
+  const [nominationList, setNominationList] = useState<MovieData[]>([]);
 
   //Retrieves the nomination list saved by the user if it exists
   useEffect(() => {
-    const savedNominationList = JSON.parse(
-      localStorage.getItem("nominationList")
-    );
-    savedNominationList && setNominationList(savedNominationList);
+    try {
+      const savedData = localStorage.getItem("nominationList");
+      if (savedData) {
+        const savedNominationList: MovieData[] = JSON.parse(savedData);
+        savedNominationList && setNominationList(savedNominationList);
+      }
+    } catch (error) {
+      console.error("Error parsing saved nomination list:", error);
+    }
   }, []);
 
   //Gets the movies for the search
@@ -43,8 +51,8 @@ function App() {
   }, [searchValue]);
 
   //Adds or removes a movie from the nomination list
-  const handleNominatesClick = (action, movie) => {
-    let newNominationList = [];
+  const handleNominatesClick = (action: "add" | "remove", movie: MovieData): void => {
+    let newNominationList: MovieData[] = [];
     if (action === "add") {
       newNominationList = addToList(movie, nominationList);
     } else {
@@ -62,7 +70,6 @@ function App() {
           setSearchValue={setSearchValue}
           nominationList={nominationList}
           handleNominatesClick={handleNominatesClick}
-          movies={movies}
         />
         <Route path={"/"}>
           <MovieList

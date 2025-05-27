@@ -17,10 +17,13 @@ import {
 //Components
 import MovieList from "./MovieList";
 
-function NominationList({ nominationList, handleNominatesClick }) {
+//Types
+import { NominationListProps } from "../types";
+
+function NominationList({ nominationList, handleNominatesClick }: NominationListProps) {
   //Set up for Chakra UI drawer
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  const btnRef = React.useRef<any>(null);
 
   return (
     <>

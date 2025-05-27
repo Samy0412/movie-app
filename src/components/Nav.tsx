@@ -8,33 +8,38 @@ import { gsap } from "gsap";
 import NominationList from "./NominationList";
 import { IoSearchOutline } from "react-icons/io5";
 
+//Types
+import { NavProps } from "../types";
+
 function Nav({
   searchValue,
   setSearchValue,
   nominationList,
   handleNominatesClick,
-}) {
+}: NavProps) {
   //Update the results when the search terms change
-  const inputHandler = (e) => {
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
   //get a reference for the element to animate
-  const textRef = useRef("");
+  const textRef = useRef<HTMLDivElement>(null);
 
   //Animation logic
   useEffect(() => {
-    const tween = gsap.to(textRef.current, {
-      duration: 3,
-      autoAlpha: 0,
-      height: 0,
-      paddingTop: 0,
-      ease: "power4",
-      paused: true,
-      delay: 1.8,
-    });
+    if (textRef.current) {
+      const tween = gsap.to(textRef.current, {
+        duration: 3,
+        autoAlpha: 0,
+        height: 0,
+        paddingTop: 0,
+        ease: "power4",
+        paused: true,
+        delay: 1.8,
+      });
 
-    if (searchValue) {
-      tween.play();
+      if (searchValue) {
+        tween.play();
+      }
     }
   }, [textRef, searchValue]);
 
@@ -63,7 +68,7 @@ function Nav({
           value={searchValue}
           placeholder="Search a movie title"
           autoFocus
-        ></input>
+        />
       </div>
     </Stylednav>
   );

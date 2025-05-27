@@ -15,7 +15,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-function Banner({ nominationList }) {
+//Types
+import { BannerProps } from "../types";
+
+function Banner({ nominationList }: BannerProps) {
   //To manage the chakra-ui modal
   const { isOpen, onOpen, onClose } = useDisclosure();
 
